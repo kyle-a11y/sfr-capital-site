@@ -431,9 +431,10 @@ section{padding:8rem 3rem}
     <!-- Progress -->
     <div class="app-progress reveal" id="appProgress">
       <div class="app-progress-step active" onclick="goToStep(1)"><span class="app-progress-num">1</span><span class="app-progress-label">Borrower</span></div>
-      <div class="app-progress-step" onclick="goToStep(2)"><span class="app-progress-num">2</span><span class="app-progress-label">Property</span></div>
-      <div class="app-progress-step" onclick="goToStep(3)"><span class="app-progress-num">3</span><span class="app-progress-label">Loan</span></div>
-      <div class="app-progress-step" onclick="goToStep(4)"><span class="app-progress-num">4</span><span class="app-progress-label">Review</span></div>
+      <div class="app-progress-step" onclick="goToStep(2)"><span class="app-progress-num">2</span><span class="app-progress-label">Details</span></div>
+      <div class="app-progress-step" onclick="goToStep(3)"><span class="app-progress-num">3</span><span class="app-progress-label">Property</span></div>
+      <div class="app-progress-step" onclick="goToStep(4)"><span class="app-progress-num">4</span><span class="app-progress-label">Loan</span></div>
+      <div class="app-progress-step" onclick="goToStep(5)"><span class="app-progress-num">5</span><span class="app-progress-label">Review</span></div>
     </div>
 
     <form id="loanApp" onsubmit="return submitApp(event)">
@@ -485,8 +486,51 @@ section{padding:8rem 3rem}
       <div class="app-nav"><div></div><button type="button" class="btn-primary" onclick="nextStep()">Continue</button></div>
     </div>
 
-    <!-- STEP 2: Property Details -->
+    <!-- STEP 2: Borrower Details -->
     <div class="app-step" id="step2">
+      <div class="app-step-title">Borrower Details</div>
+      <div class="app-step-desc">Personal information needed for underwriting. This is kept confidential.</div>
+
+      <div class="app-row">
+        <div class="app-field"><label>Date of Birth *</label><input type="date" name="borrowerDob" required></div>
+        <div class="app-field"><label>EIN (Optional)</label><input type="text" name="ein" placeholder="XX-XXXXXXX"></div>
+      </div>
+
+      <div class="app-field"><label>Personal Address *</label><input type="text" name="borrowerAddress" required placeholder="Your home address — not the investment property"></div>
+      <div class="app-row-3">
+        <div class="app-field"><label>City *</label><input type="text" name="borrowerCity" required></div>
+        <div class="app-field"><label>State *</label><select name="borrowerState" required><option value="">Select...</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+        <div class="app-field"><label>Zip *</label><input type="text" name="borrowerZip" required></div>
+      </div>
+
+      <div class="app-field">
+        <label>Is there a separate guarantor?</label>
+        <div class="app-radio-group">
+          <div class="app-radio"><input type="radio" name="hasGuarantor" id="guarYes" value="yes"><label for="guarYes">Yes</label></div>
+          <div class="app-radio"><input type="radio" name="hasGuarantor" id="guarNo" value="no" checked><label for="guarNo">No</label></div>
+        </div>
+      </div>
+      <div id="guarantorFields" style="display:none">
+        <div class="app-row">
+          <div class="app-field"><label>Guarantor Full Name</label><input type="text" name="guarantorName"></div>
+          <div class="app-field"><label>Guarantor Date of Birth</label><input type="date" name="guarantorDob"></div>
+        </div>
+        <div class="app-field"><label>Guarantor Address</label><input type="text" name="guarantorAddress"></div>
+        <div class="app-row-3">
+          <div class="app-field"><label>City</label><input type="text" name="guarantorCity"></div>
+          <div class="app-field"><label>State</label><select name="guarantorState"><option value="">Select...</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+          <div class="app-field"><label>Zip</label><input type="text" name="guarantorZip"></div>
+        </div>
+      </div>
+
+      <div class="app-nav">
+        <button type="button" class="btn-ghost" onclick="prevStep()">Back</button>
+        <button type="button" class="btn-primary" onclick="nextStep()">Continue</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Property Details -->
+    <div class="app-step" id="step3">
       <div class="app-step-title">Property Details</div>
       <div class="app-step-desc">Tell us about the investment property you&rsquo;re looking to finance.</div>
 
@@ -539,8 +583,8 @@ section{padding:8rem 3rem}
       </div>
     </div>
 
-    <!-- STEP 3: Loan Request -->
-    <div class="app-step" id="step3">
+    <!-- STEP 4: Loan Request -->
+    <div class="app-step" id="step4">
       <div class="app-step-title">Loan Request</div>
       <div class="app-step-desc">Provide details about the financing you need.</div>
 
@@ -589,8 +633,8 @@ section{padding:8rem 3rem}
       </div>
     </div>
 
-    <!-- STEP 4: Review & Submit -->
-    <div class="app-step" id="step4">
+    <!-- STEP 5: Review & Submit -->
+    <div class="app-step" id="step5">
       <div class="app-step-title">Review &amp; Submit</div>
       <div class="app-step-desc">Please review your information. You can go back to any step to make changes.</div>
 
@@ -736,9 +780,16 @@ section{padding:8rem 3rem}
   radios.forEach(function(r){r.addEventListener('change',function(){fields.style.display=this.value==='yes'?'block':'none'})});
 })();
 
+// Guarantor toggle
+(function(){
+  var radios=document.querySelectorAll('input[name="hasGuarantor"]');
+  var fields=document.getElementById('guarantorFields');
+  radios.forEach(function(r){r.addEventListener('change',function(){fields.style.display=this.value==='yes'?'block':'none'})});
+})();
+
 // Multi-step application
 var currentStep=1;
-var totalSteps=4;
+var totalSteps=5;
 
 function updateProgress(){
   var steps=document.querySelectorAll('.app-progress-step');
@@ -765,7 +816,7 @@ function goToStep(n){
 
 function nextStep(){
   if(!validateCurrentStep())return;
-  if(currentStep===3)buildReview();
+  if(currentStep===4)buildReview();
   if(currentStep<totalSteps)showStep(currentStep+1);
 }
 
@@ -805,6 +856,13 @@ function buildReview(){
       ['Phone',getVal('phone')],
       ['Entity',getVal('entityName')+' ('+getVal('entityType')+')'],
       ['Broker',getVal('broker')==='yes'?getVal('brokerName')||'Yes':'No']
+    ]},
+    {title:'Borrower Details',fields:[
+      ['Date of Birth',getVal('borrowerDob')],
+      ['EIN',getVal('ein')||'N/A'],
+      ['Address',getVal('borrowerAddress')],
+      ['Location',getVal('borrowerCity')+', '+getVal('borrowerState')+' '+getVal('borrowerZip')],
+      ['Guarantor',getVal('hasGuarantor')==='yes'?getVal('guarantorName')||'Yes':'No']
     ]},
     {title:'Property',fields:[
       ['Address',getVal('propertyAddress')],
